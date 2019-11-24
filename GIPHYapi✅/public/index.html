@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>GIFapi</title>
+    <script></script>
+</head>
+
+<body>
+    <h3>Search a GIF</h3>
+    <input type="text" id="word" placeholder="Enter the word here" />
+
+    <button type="submit" id="go">GO</button>
+    <br /><br />
+    <h3>OR, Generate a Random word and GIF</h3>
+    <button type="submit" id="RandomGO">Generate a Random Word and GIF</button>
+
+    <span><h3>Random Word is : </span><span id='RandomWord'><h4></h4></span></h3>
+
+
+    <br><br>
+
+
+    <div>
+        <img id="gif" width="400px" />
+    </div>
+
+    <script>
+        document.getElementById("go").addEventListener("click", () => {
+            word = document.getElementById("word").value;
+            console.log(word);
+            ExportWord();
+            async function ExportWord() {
+                const response = await fetch(`/gif/${word}`);
+                const data = await response.json();
+                console.log(data);
+                const imageURL = await data.data[0].images.original.url;
+                document.getElementById("gif").src = imageURL;
+            }
+        });
+
+        document.getElementById("RandomGO").addEventListener("click", () => {
+
+            CreateWord();
+            async function CreateWord() {
+                console.log("Function running");
+                const response = await fetch(`/wordNgif`);
+                const data = await response.json();
+                console.log("fetching");
+                const word = data[0];
+                console.log(word);
+                document.getElementById('RandomWord').innerHTML = word
+                const response2 = await fetch(`/gif/${word}`);
+                const data2 = await response2.json();
+                console.log(data);
+                const imageURL = await data2.data[0].images.original.url;
+                document.getElementById("gif").src = imageURL;
+            }
+
+
+        });
+    </script>
+</body>
+
+</html>

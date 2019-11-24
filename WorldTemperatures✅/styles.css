@@ -1,0 +1,30 @@
+#parent {
+    position: relative;
+    width: 800px;
+    height: 400px;
+    background-color: #fafafa;
+    border: solid 3px #9e70ba;
+    font-size: 24px;
+}
+
+#child1 {
+    position: absolute;
+    right: 40px;
+    top: 100px;
+    width: 200px;
+    height: 200px;
+    background-color: #fafafa;
+    border: solid 3px #78e382;
+    font-size: 24px;
+}
+
+#child2 {
+    position: absolute;
+    left: 40px;
+    top: 100px;
+    width: 200px;
+    height: 200px;
+    background-color: #fafafa;
+    border: solid 3px #78e382;
+    font-size: 24px;
+}
